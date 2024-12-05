@@ -1,0 +1,46 @@
+<div class="registration-form" *ngIf="showForm">
+    <form (ngSubmit)="onSubmit(registrationForm)" #registrationForm="ngForm">
+      <div>
+        <label for="firstName">First Name:</label>
+        <input type="text" id="firstName" name="firstName" ngModel required pattern="[A-Za-z]{1,20}">
+      </div>
+      <div>
+        <label for="photo">Upload Photo:</label>
+        <input type="file" id="photo" (change)="onPhotoUpload($event)" accept="image/*">
+        <div *ngIf="photoError" class="error">{{ photoError }}</div>
+      </div>
+      <div>
+        <label for="age">Age:</label>
+        <input type="range" id="age" name="age" ngModel min="0" max="100">
+      </div>
+      <div>
+        <label for="interests">Interests:</label>
+        <input type="text" id="interests" (keyup.enter)="addInterest($event)">
+        <div class="tags">
+          <span *ngFor="let interest of interests" class="tag">
+            {{ interest }} <button type="button" (click)="removeInterest(interest)">x</button>
+          </span>
+        </div>
+      </div>
+      <div>
+        <label for="address">Address:</label>
+        <select id="address" name="address" ngModel (change)="onAddressChange($event)">
+          <option value="home">Home</option>
+          <option value="company">Company</option>
+        </select>
+      </div>
+      <div *ngIf="addressType === 'home'" class="address-fields">
+        <label for="address1">Address 1:</label>
+        <input type="text" id="address1" name="address1" ngModel>
+        <label for="address2">Address 2:</label>
+        <input type="text" id="address2" name="address2" ngModel>
+      </div>
+      <div *ngIf="addressType === 'company'" class="address-fields">
+        <label for="companyAddress1">Company Address 1:</label>
+        <input type="text" id="companyAddress1" name="companyAddress1" ngModel>
+        <label for="companyAddress2">Company Address 2:</label>
+        <input type="text" id="companyAddress2" name="companyAddress2" ngModel>
+      </div>
+      <button type="submit">Register</button>
+    </form>
+  </div>

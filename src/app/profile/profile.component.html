@@ -1,0 +1,23 @@
+<div class="profile-screen">
+    <div>
+      <img [src]="user.photo" alt="User Photo">
+      <button (click)="onEditPhoto()">Edit Photo</button>
+    </div>
+    <div>
+      <label>First Name:</label>
+      <span>{{ user.firstName }}</span>
+    </div>
+    <div>
+      <label>Age:</label>
+      <span>{{ user.age }}</span>
+    </div>
+    <div>
+      <label>Interests:</label>
+      <span>{{ user.interests.join(', ') }}</span>
+    </div>
+    <div>
+      <label>Address:</label>
+      <span>{{ user.address }}</span>
+    </div>
+    <button (click)="onEditProfile()">Edit Profile</button>
+  </div>
